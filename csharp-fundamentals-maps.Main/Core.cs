@@ -125,8 +125,6 @@ namespace csharp_fundamentals_maps.Main
                     results.Add(map[numbers[i]]);
                 }
             }
-           
-
             //    // ...and above this comment
             return results;
         }            
