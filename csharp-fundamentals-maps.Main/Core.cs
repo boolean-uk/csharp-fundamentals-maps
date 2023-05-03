@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -49,10 +50,11 @@ namespace csharp_fundamentals_maps.Main
         public string getValue(string key)
         {
             
-           
-            return string.Empty;
-
-
+            if (createPerson().TryGetValue(key, out string value))
+            {
+                return value;
+            }
+            return "Not found";
         }
 
         //TODO:  2. Modify below method named hasKey that accepts two parameters:
@@ -62,10 +64,13 @@ namespace csharp_fundamentals_maps.Main
             The method must return a boolean that represents whether the string provided exists as a key
             in the provided dictionary
          */
-         public bool hasKey(Dictionary<string,string> dictionary, string isitthere)
+         public bool hasKey(Dictionary<string,string> dictionary, string isItHere)
          {
+            if (dictionary.TryGetValue(isItHere, out string value))
+            {
+                return true;
+            }
             return false;
-            
          }
 
 
@@ -76,10 +81,15 @@ namespace csharp_fundamentals_maps.Main
             The method must use the string provided to return the integer contained in the provided HashMap,
             or -1 if the string provided is not a key in the HashMap
          */
-        public int getValueOrDefault(Dictionary<string,int> dictionary, string isitthere)
+        public int getValueOrDefault(Dictionary<string,int> dictionary, string isItHere)
         {
-            return 0;
-
+            foreach (KeyValuePair<string,int> kvp in dictionary) {
+                if (kvp.Key == isItHere)
+                {
+                    return kvp.Value;
+                }
+            }
+            return -1;
         }
 
 
@@ -104,9 +114,15 @@ namespace csharp_fundamentals_maps.Main
             map.Add(7, "muse");
             map.Add(96, "nice");
             // Write your code below this comment...
-
-           
-
+ 
+            foreach (int number in numbers)
+            {
+                if (map.ContainsKey(number))
+                {
+                    results.Add(map[number]);
+                }
+            }
+            
             //    // ...and above this comment
             return results;
         }            
