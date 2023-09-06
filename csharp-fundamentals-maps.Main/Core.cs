@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 namespace csharp_fundamentals_maps.Main
 {
      public class Core
-     {
-    
+     { 
      /*
           The final fundamental building block of C# is a Dictionary. There is still much to learn about the language,
           but this component will allow you to start building lots of more complex pieces of software.
@@ -20,7 +19,8 @@ namespace csharp_fundamentals_maps.Main
           Dictionary<string, string>
      */
 
-        //TODO: Spend some time understanding the method below
+        // TODO : Spend some time understanding the method below
+
         /*
             - It creates a Map of String, String key value pairs
             - It adds some keys with values
@@ -28,6 +28,7 @@ namespace csharp_fundamentals_maps.Main
             - It returns the Dictionary
             
          */
+
         public Dictionary<string, string> createPerson()
         {
             Dictionary<string, string> map = new Dictionary<string, string>();
@@ -39,51 +40,65 @@ namespace csharp_fundamentals_maps.Main
             return map;
         }
 
-        //TODO: 1. Modify the method below named getValue that accepts one parameter:
+        // TODO: 1. Modify the method below named getValue that accepts one parameter:
+
         /*
             - a string key
             The method must return the value associated to the provided key from the HashMap created
             in the createPerson method
          */
 
+
         public string getValue(string key)
         {
-            
-           
-            return string.Empty;
-
-
+            Dictionary<string, string> person = createPerson();
+            if (person.ContainsKey(key))
+            {
+                return person[key];
+            }
+            else
+            {
+                return string.Empty;
+            }
         }
 
-        //TODO:  2. Modify below method named hasKey that accepts two parameters:
+        // TODO: 2. Modify below method named hasKey that accepts two parameters:
+
         /*
             - A Dictionary of string, string key value pairs            
             - string
-            The method must return a boolean that represents whether the string provided exists as a key
-            in the provided dictionary
+            The method must return a boolean that represents whether the string provided exists as a key in the provided dictionary
          */
+
+
          public bool hasKey(Dictionary<string,string> dictionary, string isitthere)
          {
-            return false;
-            
+            return dictionary.ContainsKey(isitthere);             
          }
 
+        // TODO: 3. Modify method named getValueOrDefault that accepts two parameters:
 
-        //TODO: 3. Modify method named getValueOrDefault that accepts two parameters:
         /*
             - A Dictionary<string,integer>
             - A string
-            The method must use the string provided to return the integer contained in the provided HashMap,
-            or -1 if the string provided is not a key in the HashMap
+            The method must use the string provided to return the integer contained in the provided HashMap, or -1 if the string provided is not a key in the HashMap
          */
+
+
         public int getValueOrDefault(Dictionary<string,int> dictionary, string isitthere)
         {
-            return 0;
-
+            if (dictionary.ContainsKey(isitthere))
+            {
+                return dictionary[isitthere];
+            }
+            else
+            {
+                return 0; 
+            }
         }
 
+        // TODO: 4. Complete the method below
 
-        //TODO: 4. Complete the method below
         /*
             Example input & output:
             input                       output
@@ -91,6 +106,8 @@ namespace csharp_fundamentals_maps.Main
             [23, 19, 96, 23, 165]   |   ArrayList<String> ["chicken", "nice", "chicken", "soup"]
             [918, 71, 88]           |   ArrayList<String> []
          */
+
+
         public List<string> buildSecretPhrase(int[] numbers)
         {
             List<string> results = new List<string>();
@@ -103,11 +120,19 @@ namespace csharp_fundamentals_maps.Main
             map.Add(6712, "bass");
             map.Add(7, "muse");
             map.Add(96, "nice");
+
             // Write your code below this comment...
 
-           
+            foreach (int num in numbers)
+            {
+                if (map.ContainsKey(num))
+                {
+                    results.Add(map[num]);
+                }
+            }
 
-            //    // ...and above this comment
+            // ... and above this comment
+
             return results;
         }            
     }
