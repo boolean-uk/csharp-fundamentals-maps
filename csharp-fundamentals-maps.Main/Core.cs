@@ -1,24 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace csharp_fundamentals_maps.Main
 {
-     public class Core
-     {
-    
-     /*
-          The final fundamental building block of C# is a Dictionary. There is still much to learn about the language,
-          but this component will allow you to start building lots of more complex pieces of software.
-    
-          Dictionary<K, V>
-          K is where you'd put the data type of the key for an item, V is the data type of the value.
-          If we wanted to map a persons details (their first name, last name, occupation etc.), we could use
-          a Dictionary using a String key and a String value like so:
-          Dictionary<string, string>
-     */
+    public class Core
+    {
+
+        /*
+             The final fundamental building block of C# is a Dictionary. There is still much to learn about the language,
+             but this component will allow you to start building lots of more complex pieces of software.
+
+             Dictionary<K, V>
+             K is where you'd put the data type of the key for an item, V is the data type of the value.
+             If we wanted to map a persons details (their first name, last name, occupation etc.), we could use
+             a Dictionary using a String key and a String value like so:
+             Dictionary<string, string>
+        */
 
         //TODO: Spend some time understanding the method below
         /*
@@ -46,14 +47,26 @@ namespace csharp_fundamentals_maps.Main
             in the createPerson method
          */
 
+        //var newDict = new Core.createPerson();
+        //Dictionary<string, string> myDict = new Dictionary<string, string>();
+
+
+        //Core core = new Core();
+        //var personDictionary = Core.createPerson();
+
         public string getValue(string key)
         {
-            
-           
+
+            var myDict = createPerson();
+
+            if (myDict.TryGetValue(key, out string value))
+            {
+                return value; //map[key];
+            }
             return string.Empty;
 
-
         }
+
 
         //TODO:  2. Modify below method named hasKey that accepts two parameters:
         /*
@@ -62,9 +75,9 @@ namespace csharp_fundamentals_maps.Main
             The method must return a boolean that represents whether the string provided exists as a key
             in the provided dictionary
          */
-         public bool hasKey(Dictionary<string,string> dictionary, string isitthere)
+        public bool hasKey(Dictionary<string,string> dictionary, string isitthere)
          {
-            return false;
+            return dictionary.ContainsKey(isitthere);
             
          }
 
@@ -78,8 +91,15 @@ namespace csharp_fundamentals_maps.Main
          */
         public int getValueOrDefault(Dictionary<string,int> dictionary, string isitthere)
         {
-            return 0;
-
+            var keys = dictionary.Keys;
+            if (dictionary.Keys.Contains(isitthere))
+            {
+                return dictionary[isitthere];
+            }
+            else
+            {
+                return -1;
+            }
         }
 
 
@@ -105,7 +125,11 @@ namespace csharp_fundamentals_maps.Main
             map.Add(96, "nice");
             // Write your code below this comment...
 
-           
+            foreach(int i in numbers)
+            {
+                results.Add(map[i]);
+            }
+
 
             //    // ...and above this comment
             return results;
