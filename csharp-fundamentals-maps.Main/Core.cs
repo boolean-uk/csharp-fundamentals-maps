@@ -48,10 +48,11 @@ namespace csharp_fundamentals_maps.Main
 
         public string getValue(string key)
         {
-            
-           
-            return string.Empty;
 
+            Dictionary<string, string> personMap = createPerson();
+
+            // Check if the key exists in the dictionary
+            return personMap.TryGetValue(key, out string value) ? value : "Key not found";
 
         }
 
@@ -62,11 +63,11 @@ namespace csharp_fundamentals_maps.Main
             The method must return a boolean that represents whether the string provided exists as a key
             in the provided dictionary
          */
-         public bool hasKey(Dictionary<string,string> dictionary, string isitthere)
+        public bool hasKey(Dictionary<string,string> dictionary, string isitthere)
          {
-            return false;
-            
-         }
+            return dictionary.ContainsKey(isitthere);
+
+        }
 
 
         //TODO: 3. Modify method named getValueOrDefault that accepts two parameters:
@@ -78,7 +79,16 @@ namespace csharp_fundamentals_maps.Main
          */
         public int getValueOrDefault(Dictionary<string,int> dictionary, string isitthere)
         {
-            return 0;
+            if (dictionary.TryGetValue(isitthere, out int value))
+            {
+                // Key exists, return the associated value
+                return value;
+            }
+            else
+            {
+                // Key not found, return -1 as the default value
+                return -1;
+            }
 
         }
 
@@ -105,7 +115,13 @@ namespace csharp_fundamentals_maps.Main
             map.Add(96, "nice");
             // Write your code below this comment...
 
-           
+            foreach (int num in numbers)
+            {
+                if (map.ContainsKey(num))
+                {
+                    results.Add(map[num]);
+                }
+            }
 
             //    // ...and above this comment
             return results;
