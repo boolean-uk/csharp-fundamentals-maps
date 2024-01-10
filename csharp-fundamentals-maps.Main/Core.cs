@@ -48,9 +48,9 @@ namespace csharp_fundamentals_maps.Main
 
         public string getValue(string key)
         {
-            
-           
-            return string.Empty;
+
+
+            return createPerson().GetValueOrDefault(key);
 
 
         }
@@ -64,7 +64,8 @@ namespace csharp_fundamentals_maps.Main
          */
          public bool hasKey(Dictionary<string,string> dictionary, string isitthere)
          {
-            return false;
+
+            return dictionary.Keys.Contains(isitthere);
             
          }
 
