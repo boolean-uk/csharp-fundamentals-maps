@@ -79,7 +79,7 @@ namespace csharp_fundamentals_maps.Main
          */
         public int getValueOrDefault(Dictionary<string,int> dictionary, string isitthere)
         {
-            return 0;
+            return dictionary.GetValueOrDefault(isitthere);
 
         }
 
@@ -106,9 +106,12 @@ namespace csharp_fundamentals_maps.Main
             map.Add(96, "nice");
             // Write your code below this comment...
 
-           
+           foreach ( int value in numbers )
+            {
+                results.Add(map.GetValueOrDefault(value));
+            }
 
-            //    // ...and above this comment
+            // ...and above this comment
             return results;
         }            
     }
