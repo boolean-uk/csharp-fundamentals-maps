@@ -8,7 +8,6 @@ namespace csharp_fundamentals_maps.Main
 {
      public class Core
      {
-    
      /*
           The final fundamental building block of C# is a Dictionary. There is still much to learn about the language,
           but this component will allow you to start building lots of more complex pieces of software.
@@ -48,11 +47,9 @@ namespace csharp_fundamentals_maps.Main
 
         public string getValue(string key)
         {
-            
-           
-            return string.Empty;
+            Dictionary<string, string> person = createPerson();
 
-
+            return person[key];
         }
 
         //TODO:  2. Modify below method named hasKey that accepts two parameters:
@@ -64,8 +61,7 @@ namespace csharp_fundamentals_maps.Main
          */
          public bool hasKey(Dictionary<string,string> dictionary, string isitthere)
          {
-            return false;
-            
+            return dictionary.ContainsKey(isitthere);
          }
 
 
@@ -78,8 +74,7 @@ namespace csharp_fundamentals_maps.Main
          */
         public int getValueOrDefault(Dictionary<string,int> dictionary, string isitthere)
         {
-            return 0;
-
+            return dictionary[isitthere];
         }
 
 
@@ -104,9 +99,11 @@ namespace csharp_fundamentals_maps.Main
             map.Add(7, "muse");
             map.Add(96, "nice");
             // Write your code below this comment...
-
-           
-
+            foreach (int number in numbers)
+            {
+                results.Add(map[number]);
+            }
+            
             //    // ...and above this comment
             return results;
         }            
