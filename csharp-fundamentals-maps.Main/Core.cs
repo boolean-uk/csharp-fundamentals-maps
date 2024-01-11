@@ -48,7 +48,7 @@ namespace csharp_fundamentals_maps.Main
 
         public string getValue(string key)
         {
-            return createPerson().GetValueOrDefault(key);
+            return createPerson().GetValueOrDefault(key, "Could not find value");
         }
 
         //TODO:  2. Modify below method named hasKey that accepts two parameters:
@@ -60,14 +60,7 @@ namespace csharp_fundamentals_maps.Main
          */
          public bool hasKey(Dictionary<string,string> dictionary, string isitthere)
          {
-            if (dictionary.ContainsKey(isitthere))
-            {
-                return true;
-            }
-            else 
-            {
-                return false;
-            }            
+            return dictionary.ContainsKey(isitthere);          
          }
 
 
@@ -80,9 +73,7 @@ namespace csharp_fundamentals_maps.Main
          */
         public int getValueOrDefault(Dictionary<string,int> dictionary, string isitthere)
         {
-            int value = dictionary.GetValueOrDefault(isitthere);
-            if (!dictionary.ContainsKey(isitthere)) { return -1; }
-            return value;
+            return dictionary.GetValueOrDefault(isitthere, -1);
         }
 
 
