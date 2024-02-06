@@ -48,9 +48,9 @@ namespace csharp_fundamentals_maps.Main
 
         public string getValue(string key)
         {
-            
-           
-            return string.Empty;
+
+            var getKey = createPerson();  
+            return getKey[key];
 
 
         }
@@ -59,11 +59,15 @@ namespace csharp_fundamentals_maps.Main
         /*
             - A Dictionary of string, string key value pairs            
             - string
-            The method must return a boolean that represents whether the string provided exists as a key
-            in the provided dictionary
+            The method must return a boolean that represents whether the string provided exists 
+            as a key in the provided dictionary
          */
          public bool hasKey(Dictionary<string,string> dictionary, string isitthere)
          {
+            if (dictionary.ContainsKey(isitthere)){
+                return true;
+            }
+        
             return false;
             
          }
@@ -73,12 +77,16 @@ namespace csharp_fundamentals_maps.Main
         /*
             - A Dictionary<string,integer>
             - A string
-            The method must use the string provided to return the integer contained in the provided HashMap,
-            or -1 if the string provided is not a key in the HashMap
+            The method must use the string provided to return the integer contained in the provided 
+            HashMap, or -1 if the string provided is not a key in the HashMap
          */
         public int getValueOrDefault(Dictionary<string,int> dictionary, string isitthere)
         {
-            return 0;
+            if (dictionary.ContainsKey(isitthere))
+            {
+                return dictionary[isitthere];
+            }
+            return -1;
 
         }
 
@@ -104,8 +112,17 @@ namespace csharp_fundamentals_maps.Main
             map.Add(7, "muse");
             map.Add(96, "nice");
             // Write your code below this comment...
+            
+            foreach(int number in numbers)
+            {
+                // check if the key of number exists, if not add it to the list.
+                if (map.ContainsKey(number))
+                {
+                    // add to the results list of strings
+                    results.Add(map[number]);
+                }
+            }
 
-           
 
             //    // ...and above this comment
             return results;
