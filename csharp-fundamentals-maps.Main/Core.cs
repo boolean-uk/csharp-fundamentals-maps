@@ -46,11 +46,12 @@ namespace csharp_fundamentals_maps.Main
             in the createPerson method
          */
 
+
         public string getValue(string key)
         {
-            
-           
-            return string.Empty;
+
+
+            return this.createPerson()[key];
 
 
         }
@@ -64,9 +65,9 @@ namespace csharp_fundamentals_maps.Main
          */
          public bool hasKey(Dictionary<string,string> dictionary, string isitthere)
          {
-            return false;
-            
-         }
+            return dictionary.ContainsKey(isitthere);
+
+        }
 
 
         //TODO: 3. Modify method named getValueOrDefault that accepts two parameters:
@@ -76,9 +77,14 @@ namespace csharp_fundamentals_maps.Main
             The method must use the string provided to return the integer contained in the provided HashMap,
             or -1 if the string provided is not a key in the HashMap
          */
-        public int getValueOrDefault(Dictionary<string,int> dictionary, string isitthere)
+        public int getValueOrDefault(Dictionary<string, int> dictionary, string isitthere)
         {
-            return 0;
+            if (dictionary.ContainsKey(isitthere))
+            {
+                return dictionary[isitthere];
+            }
+
+            return 1;
 
         }
 
@@ -104,7 +110,9 @@ namespace csharp_fundamentals_maps.Main
             map.Add(7, "muse");
             map.Add(96, "nice");
             // Write your code below this comment...
+            map.Add(19, "nice");
 
+            numbers.ToList().ForEach(n => results.Add(map[n]));
            
 
             //    // ...and above this comment
