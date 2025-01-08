@@ -36,6 +36,7 @@ namespace csharp_fundamentals_maps.Test
         [TestCase("Pepsi",3)]
         [TestCase("Sprite", 5)]
         [TestCase("7up", 7)]
+        [TestCase("Water", -1)]
         public void getValueOrDefaultTest(string drink, int quantityInFridge)
         {
             Dictionary<string, int> map = new Dictionary<string, int>();
