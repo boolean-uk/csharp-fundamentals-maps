@@ -26,7 +26,6 @@ namespace csharp_fundamentals_maps.Main
             - It adds some keys with values
             - Under the hood, the Dictionary would look like this: { "firstName": "Nathan", "lastName": King, etc. }
             - It returns the Dictionary
-            
          */
         public Dictionary<string, string> createPerson()
         {
@@ -48,11 +47,8 @@ namespace csharp_fundamentals_maps.Main
 
         public string getValue(string key)
         {
-            
-           
-            return string.Empty;
-
-
+            var dict = createPerson();
+            return dict[key];
         }
 
         //TODO:  2. Modify below method named hasKey that accepts two parameters:
@@ -64,6 +60,11 @@ namespace csharp_fundamentals_maps.Main
          */
          public bool hasKey(Dictionary<string,string> dictionary, string isitthere)
          {
+            if (dictionary.ContainsKey(isitthere))
+            {
+                return true;
+            }
+
             return false;
             
          }
@@ -78,8 +79,11 @@ namespace csharp_fundamentals_maps.Main
          */
         public int getValueOrDefault(Dictionary<string,int> dictionary, string isitthere)
         {
-            return 0;
-
+            if (dictionary.ContainsKey(isitthere))
+            { 
+                return dictionary[isitthere]; 
+            }
+            return -1;
         }
 
 
@@ -105,8 +109,13 @@ namespace csharp_fundamentals_maps.Main
             map.Add(96, "nice");
             // Write your code below this comment...
 
-           
-
+            foreach (var number in numbers)
+            {
+                if (map.ContainsKey(number))
+                {
+                    results.Add(map[number]);
+                }
+            }
             //    // ...and above this comment
             return results;
         }            
