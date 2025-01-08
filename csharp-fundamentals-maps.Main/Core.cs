@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -48,11 +50,11 @@ namespace csharp_fundamentals_maps.Main
 
         public string getValue(string key)
         {
-            
-           
-            return string.Empty;
+            /* var value = createPerson().FirstOrDefault(x => x.Key == key).Value;
+            return value;
+            */
 
-
+            return createPerson()[key]; 
         }
 
         //TODO:  2. Modify below method named hasKey that accepts two parameters:
@@ -63,8 +65,12 @@ namespace csharp_fundamentals_maps.Main
             in the provided dictionary
          */
          public bool hasKey(Dictionary<string,string> dictionary, string isitthere)
-         {
-            return false;
+         {  
+
+            if (dictionary.ContainsKey(isitthere))
+                return true;
+            else
+                return false;
             
          }
 
@@ -78,8 +84,14 @@ namespace csharp_fundamentals_maps.Main
          */
         public int getValueOrDefault(Dictionary<string,int> dictionary, string isitthere)
         {
-            return 0;
-
+            /*
+            var result = dictionary.FirstOrDefault(dictionary => dictionary.Key == isitthere).Value;
+            return result;
+            */
+            if (dictionary.ContainsKey(isitthere))
+                return dictionary[isitthere];
+            else
+                return -1;
         }
 
 
@@ -105,7 +117,10 @@ namespace csharp_fundamentals_maps.Main
             map.Add(96, "nice");
             // Write your code below this comment...
 
-           
+            foreach(var number in numbers)
+            {
+                results.Add(map[number]);
+            }
 
             //    // ...and above this comment
             return results;
