@@ -48,11 +48,15 @@ namespace csharp_fundamentals_maps.Main
 
         public string getValue(string key)
         {
-            
-           
-            return string.Empty;
 
+            var map = createPerson(); //IntantiatingcreatePerson method, to retrieve map hashmap from createPerson method.
 
+            if (map.ContainsKey(key))
+            {
+                // Return the value associated with the key
+                return map[key];
+            }
+            return null;
         }
 
         //TODO:  2. Modify below method named hasKey that accepts two parameters:
@@ -64,6 +68,9 @@ namespace csharp_fundamentals_maps.Main
          */
          public bool hasKey(Dictionary<string,string> dictionary, string isitthere)
          {
+            if (dictionary.ContainsKey(isitthere)) {
+                return true;
+            }
             return false;
             
          }
@@ -78,7 +85,11 @@ namespace csharp_fundamentals_maps.Main
          */
         public int getValueOrDefault(Dictionary<string,int> dictionary, string isitthere)
         {
-            return 0;
+            if(dictionary.ContainsKey(isitthere))
+            {
+                return dictionary[isitthere];
+            }
+            return -1;
 
         }
 
@@ -105,7 +116,13 @@ namespace csharp_fundamentals_maps.Main
             map.Add(96, "nice");
             // Write your code below this comment...
 
-           
+            foreach (int number in numbers)
+            {
+                if (map.ContainsKey(number)) // Check if the map contains the key
+                {
+                    results.Add(map[number]); // Add the corresponding value to results
+                }
+            }
 
             //    // ...and above this comment
             return results;
