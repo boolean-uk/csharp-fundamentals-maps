@@ -47,10 +47,15 @@ namespace csharp_fundamentals_maps.Main
          */
 
         public string getValue(string key)
+
         {
-            
-           
-            return string.Empty;
+            Dictionary<string, string> map = createPerson();
+
+            if (map.TryGetValue(key, out string value))
+            {
+                return value;
+            }
+            return "Value not found";
 
 
         }
@@ -64,8 +69,9 @@ namespace csharp_fundamentals_maps.Main
          */
          public bool hasKey(Dictionary<string,string> dictionary, string isitthere)
          {
-            return false;
-            
+          
+            return dictionary.ContainsKey(isitthere);
+        
          }
 
 
@@ -78,9 +84,15 @@ namespace csharp_fundamentals_maps.Main
          */
         public int getValueOrDefault(Dictionary<string,int> dictionary, string isitthere)
         {
-            return 0;
 
-        }
+            if (dictionary.TryGetValue(isitthere, out int value))
+            {
+                return value;
+            }
+
+            return -1;
+
+       }
 
 
         //TODO: 4. Complete the method below
@@ -94,7 +106,7 @@ namespace csharp_fundamentals_maps.Main
         public List<string> buildSecretPhrase(int[] numbers)
         {
             List<string> results = new List<string>();
-            
+
             // Do not modify the map
             Dictionary<int, string> map = new Dictionary<int, string>();
             map.Add(23, "chicken");
@@ -105,10 +117,17 @@ namespace csharp_fundamentals_maps.Main
             map.Add(96, "nice");
             // Write your code below this comment...
 
-           
+            foreach (int number in numbers)
+            {
+                if (map.TryGetValue(number, out string value))
+                {
+                    results.Add(value);
+                }
+                
 
+            }
             //    // ...and above this comment
             return results;
-        }            
+        }
     }
 }
