@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace csharp_fundamentals_maps.Main
             _planets = new Dictionary<string, float>();
             _planets.Add("Jupiter", 5.2f);
             _planets.Add("Uranus", 19.2f);
-            _planets.Add("Pluto", 39f);
+            //_planets.Add("Pluto", 39f);
             _planets.Add("Mercury", 0.39f);
             _planets.Add("Saturn", 9.54f);
             _planets.Add("Earth", 1f);
@@ -29,22 +30,19 @@ namespace csharp_fundamentals_maps.Main
         
         public Dictionary<string,int> LettersInName()
         {
-           
             Dictionary<string, int> result = new Dictionary<string, int>();
 
             //TODO   Complete this method to return an Dictionary of <string,int> which contains 
             //          the planet name and the number of letters in its name
             //          iterate the _planets using a foreach object to load the result dictionary.
 
+            foreach (var planet in _planets)
+            {
+                result.Add(planet.Key, planet.Key.Length);
+            }
             
-
             return result;
         }
-
-
-
-
-
 
         public Dictionary<string,float> OrderedPlanets()
         {           
@@ -52,7 +50,7 @@ namespace csharp_fundamentals_maps.Main
         }
         public Dictionary<string, float> OrderedPlanetsByDescending()
         {            
-            return _planets.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
+            return _planets.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
         }
         //TODO:  modify the OrderedPlanetsByDescending so it is not dictionary is not doing an OrderBy but OrderByDescending
 
@@ -67,8 +65,9 @@ namespace csharp_fundamentals_maps.Main
 
         public string FurthestFromTheSun()
         {
-            return string.Empty;      
+            return OrderedPlanetsByDescending().FirstOrDefault().Key;
         }
+
         public string ClosestToTheSun()
         {
             KeyValuePair<string, float> result = OrderedPlanets().First();

@@ -22,7 +22,6 @@ namespace csharp_fundamentals_maps.Test
         [Test]
         public void PlutoNotAPlanet()
         {
-            
             Assert.IsFalse(ext.Planets.ContainsKey("Pluto"));
         }
 
