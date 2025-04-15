@@ -48,9 +48,9 @@ namespace csharp_fundamentals_maps.Main
 
         public string getValue(string key)
         {
-            
+               
            
-            return string.Empty;
+            return createPerson()[key];
 
 
         }
@@ -64,7 +64,9 @@ namespace csharp_fundamentals_maps.Main
          */
          public bool hasKey(Dictionary<string,string> dictionary, string isitthere)
          {
-            return false;
+            bool contains = (dictionary.ContainsKey(isitthere) ? true: false);
+
+            return contains;
             
          }
 
@@ -78,8 +80,9 @@ namespace csharp_fundamentals_maps.Main
          */
         public int getValueOrDefault(Dictionary<string,int> dictionary, string isitthere)
         {
-            return 0;
+            int index = (dictionary.ContainsKey(isitthere))? dictionary[isitthere]: -1 ;
 
+            return index;
         }
 
 
@@ -87,8 +90,8 @@ namespace csharp_fundamentals_maps.Main
         /*
             Example input & output:
             input                       output
-            [42, 6712, 7]           |   ArrayList<String> ["universe", "bass", "muse"]
-            [23, 19, 96, 23, 165]   |   ArrayList<String> ["chicken", "nice", "chicken", "soup"]
+            [42#, 6712#, 7#]           |   ArrayList<String> ["universe", "bass", "muse"]
+            [23#, 19, 96#, 23#, 165#]   |   ArrayList<String> ["chicken", "nice", "chicken", "soup"]
             [918, 71, 88]           |   ArrayList<String> []
          */
         public List<string> buildSecretPhrase(int[] numbers)
@@ -104,8 +107,12 @@ namespace csharp_fundamentals_maps.Main
             map.Add(7, "muse");
             map.Add(96, "nice");
             // Write your code below this comment...
+            foreach (int number in numbers)
+            {
+                results.Add(map[number]);
+            }
+            
 
-           
 
             //    // ...and above this comment
             return results;
