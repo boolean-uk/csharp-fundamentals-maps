@@ -19,7 +19,7 @@ namespace csharp_fundamentals_maps.Main
           a Dictionary using a String key and a String value like so:
           Dictionary<string, string>
      */
-
+      
         //TODO: Spend some time understanding the method below
         /*
             - It creates a Map of String, String key value pairs
@@ -48,23 +48,38 @@ namespace csharp_fundamentals_maps.Main
 
         public string getValue(string key)
         {
-            
-           
-            return string.Empty;
+            var val = "";
+            foreach(var item in createPerson())
+            {
+                if (item.Key == key)
+                {
+                    val = item.Value.ToString();
+                }
+            }
+
+            return val;
 
 
         }
 
         //TODO:  2. Modify below method named hasKey that accepts two parameters:
         /*
-            - A Dictionary of string, string key value pairs            
+            - A Dictionary of string, string     key value pairs            
             - string
             The method must return a boolean that represents whether the string provided exists as a key
             in the provided dictionary
          */
          public bool hasKey(Dictionary<string,string> dictionary, string isitthere)
          {
-            return false;
+            
+            if (dictionary.ContainsKey(isitthere))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
             
          }
 
@@ -78,7 +93,16 @@ namespace csharp_fundamentals_maps.Main
          */
         public int getValueOrDefault(Dictionary<string,int> dictionary, string isitthere)
         {
-            return 0;
+
+
+            if (dictionary.ContainsKey(isitthere))
+            {
+                return dictionary[isitthere];
+            }
+            else
+            {
+                return -1;
+            }
 
         }
 
@@ -105,7 +129,14 @@ namespace csharp_fundamentals_maps.Main
             map.Add(96, "nice");
             // Write your code below this comment...
 
-           
+           foreach(int i in numbers)
+            {
+                if(map.ContainsKey(i))
+                {
+                    results.Add(map[i].ToString());
+                }
+                
+            }
 
             //    // ...and above this comment
             return results;
