@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -16,7 +18,7 @@ namespace csharp_fundamentals_maps.Main
             _planets = new Dictionary<string, float>();
             _planets.Add("Jupiter", 5.2f);
             _planets.Add("Uranus", 19.2f);
-            _planets.Add("Pluto", 39f);
+          //  _planets.Add("Pluto", 39f);
             _planets.Add("Mercury", 0.39f);
             _planets.Add("Saturn", 9.54f);
             _planets.Add("Earth", 1f);
@@ -31,6 +33,11 @@ namespace csharp_fundamentals_maps.Main
         {
            
             Dictionary<string, int> result = new Dictionary<string, int>();
+            
+            foreach ( string name in _planets.Keys) {
+                result.Add(name, name.Length);
+            }
+            
 
             //TODO   Complete this method to return an Dictionary of <string,int> which contains 
             //          the planet name and the number of letters in its name
@@ -41,18 +48,14 @@ namespace csharp_fundamentals_maps.Main
             return result;
         }
 
-
-
-
-
-
         public Dictionary<string,float> OrderedPlanets()
         {           
                 return _planets.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);                           
         }
         public Dictionary<string, float> OrderedPlanetsByDescending()
-        {            
-            return _planets.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
+        {
+            Dictionary<string, float> planetsOrdered = OrderedPlanets();
+            return planetsOrdered.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
         }
         //TODO:  modify the OrderedPlanetsByDescending so it is not dictionary is not doing an OrderBy but OrderByDescending
 
@@ -67,7 +70,9 @@ namespace csharp_fundamentals_maps.Main
 
         public string FurthestFromTheSun()
         {
-            return string.Empty;      
+            Dictionary<string,float> result = OrderedPlanets();
+           
+            return result.Keys.Last().ToString();    
         }
         public string ClosestToTheSun()
         {
