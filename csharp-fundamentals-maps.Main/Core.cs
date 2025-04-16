@@ -48,9 +48,16 @@ namespace csharp_fundamentals_maps.Main
 
         public string getValue(string key)
         {
-            
-           
-            return string.Empty;
+            createPerson();
+            string value = null;
+            foreach (var item in createPerson())
+            {
+                if (item.Key==key)
+                {
+                    value = item.Value;
+                }
+            }
+            return value;
 
 
         }
@@ -64,9 +71,15 @@ namespace csharp_fundamentals_maps.Main
          */
          public bool hasKey(Dictionary<string,string> dictionary, string isitthere)
          {
-            return false;
-            
-         }
+            bool isithere = false;
+            foreach (var item in dictionary)
+            {
+                if (item.Key == isitthere)
+                    return true;
+               
+            }
+            return isithere;
+        }
 
 
         //TODO: 3. Modify method named getValueOrDefault that accepts two parameters:
@@ -78,7 +91,15 @@ namespace csharp_fundamentals_maps.Main
          */
         public int getValueOrDefault(Dictionary<string,int> dictionary, string isitthere)
         {
-            return 0;
+            int value = 0;
+            foreach (var item in dictionary)
+            {
+                if (item.Key == isitthere)
+                {
+                    value = item.Value;
+                }
+            }
+            return value;
 
         }
 
@@ -105,9 +126,18 @@ namespace csharp_fundamentals_maps.Main
             map.Add(96, "nice");
             // Write your code below this comment...
 
-           
+            foreach (int number in numbers)
+            {
+                foreach (var item in map)
+                {
+                    if (number == item.Key)
+                    {
+                        results.Add(item.Value);
+                    }
+                }
+            }
 
-            //    // ...and above this comment
+
             return results;
         }            
     }
