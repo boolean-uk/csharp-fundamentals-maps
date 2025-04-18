@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace csharp_fundamentals_maps.Main
 {
-     public class Core
-     {
-    
-     /*
-          The final fundamental building block of C# is a Dictionary. There is still much to learn about the language,
-          but this component will allow you to start building lots of more complex pieces of software.
-    
-          Dictionary<K, V>
-          K is where you'd put the data type of the key for an item, V is the data type of the value.
-          If we wanted to map a persons details (their first name, last name, occupation etc.), we could use
-          a Dictionary using a String key and a String value like so:
-          Dictionary<string, string>
-     */
+    public class Core
+    {
+
+        /*
+             The final fundamental building block of C# is a Dictionary. There is still much to learn about the language,
+             but this component will allow you to start building lots of more complex pieces of software.
+
+             Dictionary<K, V>
+             K is where you'd put the data type of the key for an item, V is the data type of the value.
+             If we wanted to map a persons details (their first name, last name, occupation etc.), we could use
+             a Dictionary using a String key and a String value like so:
+             Dictionary<string, string>
+        */
 
         //TODO: Spend some time understanding the method below
         /*
@@ -48,9 +48,19 @@ namespace csharp_fundamentals_maps.Main
 
         public string getValue(string key)
         {
-            
-           
-            return string.Empty;
+            // creates a dictionary named personMap and initializes it with the contents returned
+            Dictionary<string, string> personMap = createPerson();
+
+            // Check if the key exists in the dictionary
+            if (personMap.ContainsKey(key))
+            {
+                // Return the value associated with the key
+                return personMap[key];
+            }
+            else
+            {
+                return string.Empty;
+            }
 
 
         }
@@ -62,11 +72,12 @@ namespace csharp_fundamentals_maps.Main
             The method must return a boolean that represents whether the string provided exists as a key
             in the provided dictionary
          */
-         public bool hasKey(Dictionary<string,string> dictionary, string isitthere)
-         {
-            return false;
-            
-         }
+        public bool hasKey(Dictionary<string, string> dictionary, string isitthere)
+        {
+            return dictionary.ContainsKey(isitthere);
+            ;
+
+        }
 
 
         //TODO: 3. Modify method named getValueOrDefault that accepts two parameters:
@@ -76,10 +87,18 @@ namespace csharp_fundamentals_maps.Main
             The method must use the string provided to return the integer contained in the provided HashMap,
             or -1 if the string provided is not a key in the HashMap
          */
-        public int getValueOrDefault(Dictionary<string,int> dictionary, string isitthere)
-        {
-            return 0;
 
+        public int getValueOrDefault(Dictionary<string, int> dictionary, string isitthere)
+        {
+            int value;
+            if (dictionary.TryGetValue(isitthere, out value))
+            {
+                return value;
+            }
+            else
+            {
+                return -1;
+            }
         }
 
 
@@ -94,7 +113,7 @@ namespace csharp_fundamentals_maps.Main
         public List<string> buildSecretPhrase(int[] numbers)
         {
             List<string> results = new List<string>();
-            
+
             // Do not modify the map
             Dictionary<int, string> map = new Dictionary<int, string>();
             map.Add(23, "chicken");
@@ -104,11 +123,18 @@ namespace csharp_fundamentals_maps.Main
             map.Add(7, "muse");
             map.Add(96, "nice");
             // Write your code below this comment...
+            foreach (int number in numbers)
+            {
+                if (map.ContainsKey(number))
+                {
+                    results.Add(map[number]);
+                }
 
-           
+                //    // ...and above this comment
 
-            //    // ...and above this comment
+            }
             return results;
-        }            
+        }
     }
+
 }
