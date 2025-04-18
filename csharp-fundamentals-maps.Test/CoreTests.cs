@@ -17,7 +17,7 @@ namespace csharp_fundamentals_maps.Test
         {
             Assert.AreEqual("Nigel", this.exercise.getValue("firstName"));
             Assert.AreEqual("Sibbert", this.exercise.getValue("lastName"));
-            Assert.AreEqual("Software Developer", this.exercise.getValue("occupation"));
+            Assert.AreEqual("Software Developer", this.exercise.getValue("occupation")); 
         }
         [Test]
         public void hasKeyTest()
