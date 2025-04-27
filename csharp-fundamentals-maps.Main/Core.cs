@@ -49,8 +49,8 @@ namespace csharp_fundamentals_maps.Main
         public string getValue(string key)
         {
             
-           
-            return string.Empty;
+           Dictionary<string,string> dic = createPerson();
+           return dic[key];
 
 
         }
@@ -64,7 +64,15 @@ namespace csharp_fundamentals_maps.Main
          */
          public bool hasKey(Dictionary<string,string> dictionary, string isitthere)
          {
-            return false;
+            bool isThere = false;
+            foreach (string key in dictionary.Keys)
+            {
+                if (dictionary.ContainsKey(isitthere))
+                {
+                    isThere = true;
+                }
+            }
+            return isThere;
             
          }
 
@@ -78,8 +86,15 @@ namespace csharp_fundamentals_maps.Main
          */
         public int getValueOrDefault(Dictionary<string,int> dictionary, string isitthere)
         {
-            return 0;
-
+            int returnValue = -1;
+            foreach (string key in dictionary.Keys)
+            {
+                if(dictionary.ContainsKey(isitthere))
+                {
+                    returnValue = dictionary[isitthere];
+                }
+            }
+            return returnValue;
         }
 
 
@@ -87,8 +102,8 @@ namespace csharp_fundamentals_maps.Main
         /*
             Example input & output:
             input                       output
-            [42, 6712, 7]           |   ArrayList<String> ["universe", "bass", "muse"]
-            [23, 19, 96, 23, 165]   |   ArrayList<String> ["chicken", "nice", "chicken", "soup"]
+            [42#, 6712#, 7#]           |   ArrayList<String> ["universe"#, "bass"#, "muse"#]
+            [23#, 19, 96#, 23#, 165#]   |   ArrayList<String> ["chicken"#, "nice"#, "chicken"#, "soup"#]
             [918, 71, 88]           |   ArrayList<String> []
          */
         public List<string> buildSecretPhrase(int[] numbers)
@@ -104,8 +119,11 @@ namespace csharp_fundamentals_maps.Main
             map.Add(7, "muse");
             map.Add(96, "nice");
             // Write your code below this comment...
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                results.Add(map[numbers[i]]);
+            }
 
-           
 
             //    // ...and above this comment
             return results;
