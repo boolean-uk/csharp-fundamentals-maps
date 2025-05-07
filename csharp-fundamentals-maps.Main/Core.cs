@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -48,10 +49,8 @@ namespace csharp_fundamentals_maps.Main
 
         public string getValue(string key)
         {
-            
-           
-            return string.Empty;
-
+            var persons = createPerson();
+            return persons[key];
 
         }
 
@@ -64,8 +63,11 @@ namespace csharp_fundamentals_maps.Main
          */
          public bool hasKey(Dictionary<string,string> dictionary, string isitthere)
          {
+            if (dictionary.ContainsKey(isitthere))
+            {
+                return true;
+            }
             return false;
-            
          }
 
 
@@ -78,7 +80,11 @@ namespace csharp_fundamentals_maps.Main
          */
         public int getValueOrDefault(Dictionary<string,int> dictionary, string isitthere)
         {
-            return 0;
+            if ( dictionary.ContainsKey(isitthere) )
+            {
+                return dictionary[isitthere];
+            }
+            return -1;
 
         }
 
@@ -104,9 +110,12 @@ namespace csharp_fundamentals_maps.Main
             map.Add(7, "muse");
             map.Add(96, "nice");
             // Write your code below this comment...
-
+            
+            foreach (int number in numbers)
+            {
+                results.Add(map[number]);
+            }
            
-
             //    // ...and above this comment
             return results;
         }            
