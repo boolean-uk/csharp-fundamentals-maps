@@ -48,11 +48,8 @@ namespace csharp_fundamentals_maps.Main
 
         public string getValue(string key)
         {
-            
-           
-            return string.Empty;
-
-
+            var map = createPerson();
+            return map.TryGetValue(key, out var value) ? value : string.Empty;
         }
 
         //TODO:  2. Modify below method named hasKey that accepts two parameters:
@@ -62,9 +59,9 @@ namespace csharp_fundamentals_maps.Main
             The method must return a boolean that represents whether the string provided exists as a key
             in the provided dictionary
          */
-         public bool hasKey(Dictionary<string,string> dictionary, string isitthere)
+        public bool hasKey(Dictionary<string,string> dictionary, string isitthere)
          {
-            return false;
+            return dictionary.ContainsKey(isitthere);
             
          }
 
@@ -76,11 +73,18 @@ namespace csharp_fundamentals_maps.Main
             The method must use the string provided to return the integer contained in the provided HashMap,
             or -1 if the string provided is not a key in the HashMap
          */
-        public int getValueOrDefault(Dictionary<string,int> dictionary, string isitthere)
+        public int getValueOrDefault(Dictionary<string, int> dictionary, string isitthere)
         {
-            return 0;
-
+            if (dictionary.ContainsKey(isitthere))
+            {
+                return dictionary[isitthere];
+            }
+            else
+            {
+                return -1;
+            }
         }
+
 
 
         //TODO: 4. Complete the method below
@@ -105,7 +109,13 @@ namespace csharp_fundamentals_maps.Main
             map.Add(96, "nice");
             // Write your code below this comment...
 
-           
+            foreach (int number in numbers)
+            {
+                if (map.ContainsKey(number))
+                {
+                    results.Add(map[number]);
+                }
+            }
 
             //    // ...and above this comment
             return results;
