@@ -16,7 +16,7 @@ namespace csharp_fundamentals_maps.Main
             _planets = new Dictionary<string, float>();
             _planets.Add("Jupiter", 5.2f);
             _planets.Add("Uranus", 19.2f);
-            _planets.Add("Pluto", 39f);
+            // _planets.Add("Pluto", 39f);
             _planets.Add("Mercury", 0.39f);
             _planets.Add("Saturn", 9.54f);
             _planets.Add("Earth", 1f);
@@ -36,15 +36,10 @@ namespace csharp_fundamentals_maps.Main
             //          the planet name and the number of letters in its name
             //          iterate the _planets using a foreach object to load the result dictionary.
 
-            
+            _planets.Keys.ToList().ForEach(k => result[k] = k.Length);
 
             return result;
         }
-
-
-
-
-
 
         public Dictionary<string,float> OrderedPlanets()
         {           
@@ -52,7 +47,7 @@ namespace csharp_fundamentals_maps.Main
         }
         public Dictionary<string, float> OrderedPlanetsByDescending()
         {            
-            return _planets.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
+            return _planets.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
         }
         //TODO:  modify the OrderedPlanetsByDescending so it is not dictionary is not doing an OrderBy but OrderByDescending
 
@@ -67,7 +62,7 @@ namespace csharp_fundamentals_maps.Main
 
         public string FurthestFromTheSun()
         {
-            return string.Empty;      
+            return OrderedPlanetsByDescending().Keys.First();      
         }
         public string ClosestToTheSun()
         {
