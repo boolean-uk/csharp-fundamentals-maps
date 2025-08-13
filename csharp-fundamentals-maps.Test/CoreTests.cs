@@ -15,6 +15,12 @@ namespace csharp_fundamentals_maps.Test
         [Test]
         public void getValueTest()
         {
+            Dictionary<string, string> map = new Dictionary<string, string>();
+
+            map.Add("firstName", "Nigel");
+            map.Add("lastName", "Sibbert");
+            map.Add("currentTown", "Bournemouth");
+
             Assert.AreEqual("Nigel", this.exercise.getValue("firstName"));
             Assert.AreEqual("Sibbert", this.exercise.getValue("lastName"));
             Assert.AreEqual("Software Developer", this.exercise.getValue("occupation"));
