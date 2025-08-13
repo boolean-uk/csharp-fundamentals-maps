@@ -15,6 +15,8 @@ namespace csharp_fundamentals_maps.Test
         [Test]
         public void getValueTest()
         {
+            //Core core = new Core();
+            //core.createPerson();
             Assert.AreEqual("Nigel", this.exercise.getValue("firstName"));
             Assert.AreEqual("Sibbert", this.exercise.getValue("lastName"));
             Assert.AreEqual("Software Developer", this.exercise.getValue("occupation"));
